@@ -1,6 +1,6 @@
 # aucarvideo
 
-## Desarrollar
+## Prepara tu ambiente de desarrollo
 
 1. Crear la base de datos para el proyecto usando contenedores
 
@@ -11,7 +11,7 @@ sudo apt-get update
 ```
 
 ```sh
-sudo apt-get install docker
+sudo apt-get install docker.io
 ```
 
 Crea la base de datos usando docker:
@@ -46,19 +46,66 @@ Debería salir algo parecido a lo siguiente, donde la IP del servidor de base de
         "IPAddress": "172.17.0.2",
 ```
 
-1. Abre la terminal ubicado en el escritorio usando **Ctrl+Alt+T**.
-2. Descarga el proyecto usando el siguiente comando.
+2. Descarga el código fuente del proyecto **ubicado en el Escritorio**.
 
 ```sh
 git clone https://github.com/DonAurelio/aucarvideo.git
 ```
-3. Entra a la carpeta del proyecto usando el siguiente comando
+
+Entra a la carpeta del proyecto:
 
 ```sh
 cd aucarvideo
 ```
 
+2. Crear un ambiente virtual en Python para u proyecto.
 
+Instala el gestor de paquets de Python:
 
+```sh
+sudo apt-get install python-pip
+```
+Instala el ambiente virtual de Python:
+
+```sh
+sudo pip install virtualenv
+```
+
+Crea un ambiente virtual desarrollo con la versión de Python 3.6
+
+```sh
+virtualenv --python=python3.6 .env
+```
+
+Verifica que el ambiente se haya creado con el comando **ll**:
+
+```sh
+ll
+```
+
+Deberia a parcer algo parecido a esto:
+
+```sh
+drwxr-xr-x 5 some some 4096 ago 17 21:18 ./
+drwxr-xr-x 7 some some 4096 ago 17 20:13 ../
+drwxr-xr-x 3 some some 4096 ago 17 21:18 aucarvideo/
+drwxr-xr-x 6 some some 4096 ago 17 20:16 .env/
+drwxr-xr-x 8 some some 4096 ago 17 21:19 .git/
+-rw-r--r-- 1 some some 1203 ago 17 20:15 .gitignore
+-rw-r--r-- 1 some some 1868 ago 18 15:10 README.md
+```
+
+Verifica que la carpea **.env** este en el salida anterior. Luego activa el ambiente de desarrollo:
+
+```sh
+source .env/bin/activate
+```
+
+Si el comando anterior funciona bien debería haber cambiado el prompt the to consola:
+
+```sh
+aureavm@lightning:~/Desktop/aucarvideo$
+(.env) aureavm@lightning:~/Desktop/aucarvideo$
+```
 
 
