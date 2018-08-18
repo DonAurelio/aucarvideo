@@ -120,4 +120,11 @@ Instala los requerimientos de l apliación:
 pip3.6 install -r requeriments.txt
 ```
 
+Para correr la aplicación usa el comando:
+
+```sh
+./manage.py runserver localhost:8000
+```
+Entra navegador usando el siguiente link https://localhost:8000.
+
 
