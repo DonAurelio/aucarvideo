@@ -74,7 +74,7 @@ sudo pip install virtualenv
 Crea un ambiente virtual desarrollo con la versión de Python 3.6
 
 ```sh
-sudo virtualenv --python=python3.6 .env
+virtualenv --python=python3.6 .env
 ```
 
 Verifica que el ambiente se haya creado con el comando **ll**:
@@ -120,11 +120,56 @@ Instala los requerimientos de l apliación:
 pip3.6 install -r requeriments.txt
 ```
 
-Para correr la aplicación usa el comando:
+Para correr la aplicación **debes estar dentro del ambiente** usa el comando y además dentro de la carpeta **aucarvideo**.
 
 ```sh
 ./manage.py runserver localhost:8000
 ```
 Entra navegador usando el siguiente link https://localhost:8000.
 
+## Cuando te sientes de desarrollar
+
+1. Descarga la última versión del proyecto.
+
+```sh
+git pull origin master
+```
+
+2. Inicia la base de datos
+
+```sh
+sudo docker start aucarvideo_db
+```
+
+3. Verifica que esté corriendo. 
+
+```sh
+sudo docker ps
+```
+
+4. Inicia la aplicación.
+
+```sh
+./manage.py runserver localhost:8000
+```
+
+## Cuando hagas algo muy bueno
+
+1. Añade los cambios que hiciste.
+
+```sh
+git add -A
+```
+
+2. Coloca un pequeño compentario a tus cambios. 
+
+```sh
+git commit -m "Un breve comentario"
+```
+
+3. Sube los cambios al reposirotio.
+
+```sh
+git push origin master
+``` 
 
