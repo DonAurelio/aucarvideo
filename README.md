@@ -74,7 +74,7 @@ sudo pip install virtualenv
 Crea un ambiente virtual desarrollo con la versión de Python 3.6
 
 ```sh
-virtualenv --python=python3.6 .env
+sudo virtualenv --python=python3.6 .env
 ```
 
 Verifica que el ambiente se haya creado con el comando **ll**:
@@ -104,8 +104,20 @@ source .env/bin/activate
 Si el comando anterior funciona bien debería haber cambiado el prompt the to consola:
 
 ```sh
-aureavm@lightning:~/Desktop/aucarvideo$
-(.env) aureavm@lightning:~/Desktop/aucarvideo$
+some@lightning:~/Desktop/aucarvideo$
+(.env) some@lightning:~/Desktop/aucarvideo$
+```
+
+Verifica que el archivo **requeriments.txt** este presente en la carpeta del proyecto.
+
+```sh
+ls
+```
+
+Instala los requerimientos de l apliación:
+
+```sh
+pip3.6 install -r requeriments.txt
 ```
 
 
