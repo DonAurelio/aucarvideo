@@ -25,21 +25,51 @@ SECRET_KEY = 'rs%q+efmcb7_qo)wck0w(nn@ji8m%*o%g@*-ow^e^hz=2ge_el'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
+SHARED_APPS = (
+    'tenant_schemas',  # mandatory, should always be before any django app
+    'customers', # you must list the app where your tenant model resides in
+
+    'django.contrib.contenttypes',
+
+    # everything below here is optional
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.sites',
+    'django.contrib.messages',
+    'django.contrib.admin',
+)
+
+TENANT_APPS = (
+    'django.contrib.contenttypes',
+
+    # your tenant-specific apps
+    #'myapp.hotels',
+    #'myapp.houses',
+)
 
 INSTALLED_APPS = [
+    'tenant_schemas',  # mandatory, should always be before any django app
+
+    'customers',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
 
+TENANT_MODEL = "customers.Client" # app.Model
+
+DEFAULT_FILE_STORAGE = 'tenant_schemas.storage.TenantFileSystemStorage'
+
 MIDDLEWARE = [
+    'tenant_schemas.middleware.TenantMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -82,14 +112,18 @@ WSGI_APPLICATION = 'aucarvideo.wsgi.application'
 #}
 DATABASES = {
     'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-    'NAME': 'postgres', # Or path to database file if using sqlite3.
-    'USER': 'postgres', # Not used with sqlite3.
-    'PASSWORD': 'postgres', # Not used with sqlite3.
-    'HOST': '172.17.0.2', # Set to empty string for localhost. Not used with sqlite3.
-    'PORT': '5432', # Set to empty string for default. Not used with sqlite3.
+    'ENGINE': 'tenant_schemas.postgresql_backend',
+    'NAME': 'postgres',
+    'USER': 'postgres', 
+    'PASSWORD': 'postgres',
+    'HOST': '172.17.0.2',
+    'PORT': '5432',
     }
 }
+
+DATABASE_ROUTERS = (
+    'tenant_schemas.routers.TenantSyncRouter',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
